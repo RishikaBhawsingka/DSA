@@ -21,6 +21,7 @@ public:
 };  
 
 //3Sum 
+         // 3sum problem solved
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
