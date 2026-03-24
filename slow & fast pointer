@@ -1,5 +1,6 @@
 //linkedlist cycle easy 
 
+class solution{
 public:
 #define ed endl
 #define Node ListNode
@@ -20,3 +21,4 @@ public:
        }
        return false;
    }
+};
