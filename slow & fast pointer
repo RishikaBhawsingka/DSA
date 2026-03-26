@@ -22,3 +22,37 @@ public:
        return false;
    }
 };
+
+//linked list cycle 2 (find strt node of the cycle)
+
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) 
+    {
+        if(head == NULL) return NULL;
+
+        ListNode *slow = head;
+        ListNode *fast = head;
+
+        // Step 1: Detect cycle
+        while(fast != NULL && fast->next != NULL)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+
+            if(slow == fast)
+            {
+                // Step 2: Find starting node of cycle
+                slow = head;
+                while(slow != fast)
+                {
+                    slow = slow->next;
+                    fast = fast->next;
+                }
+                return slow;
+            }
+        }
+
+        return NULL; // No cycle
+    }
+};
