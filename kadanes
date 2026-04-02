@@ -36,5 +36,30 @@ class Solution {
         }
         return ans;
     }
+};  
+
+//max subarray product
+
+class Solution {
+public:
+    int maxProduct(vector<int>& a) {
+        
+        int n = a.size();
+         int ans = a[0];
+        int bestending = a[0];
+        int worstending = a[0];
+        for( int i = 1 ;i < n ; i++)
+        {
+            int v1 = bestending * a[i];
+            int v2 = a[i];
+            int v3 = worstending * a[i];
+            bestending = max(v1,max(v2,v3));
+            worstending = min(v1,min(v2,v3));
+             ans = max(ans,max(bestending,worstending));
+             
+        }
+        return ans;
+    
+    }
 };
     
