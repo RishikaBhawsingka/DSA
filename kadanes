@@ -62,4 +62,32 @@ public:
     
     }
 };
+
+//Max sum subarray with one deletion
+
+class Solution {
+public:
+    int maximumSum(vector<int>& a) {
+        int n = a.size();
+        
+        long long noDel = a[0];
+        long long oneDel = LLONG_MIN;
+        long long res = a[0];
+
+        for (int i = 1; i < n; i++) {
+            long long prevNoDel = noDel;
+
+            noDel = max((long long)a[i], noDel + a[i]);
+
+            if (oneDel == LLONG_MIN)
+                oneDel = prevNoDel;   // delete current element
+            else
+                oneDel = max(prevNoDel, oneDel + a[i]);
+
+            res = max(res, max(noDel, oneDel));
+        }
+
+        return (int)res;
+    }
+};
     
