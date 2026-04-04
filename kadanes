@@ -90,4 +90,41 @@ public:
         return (int)res;
     }
 };
+
+5. //Circular max sum subarray
+
+class Solution {
+public:
+    int maxSubarraySumCircular(vector<int>& a) {
+        int n = a.size();
+
+             // Case 1: Normal Kadane (max subarray)
+        int maxSum = a[0];
+        int currMax = a[0];
+
+        for (int i = 1; i < n; i++) {
+            currMax = max(a[i], currMax + a[i]);
+            maxSum = max(maxSum, currMax);
+        }
+
+           // Case 2: Min subarray (for circular)
+        int minSum = a[0];
+        int currMin = a[0];
+
+        for (int i = 1; i < n; i++) {
+            currMin = min(a[i], currMin + a[i]);
+            minSum = min(minSum, currMin);
+        }
+
+                                   // Total sum
+         int total = 0;
+        for (int x : a) total += x;
+
+                                  // Edge case: all numbers negative
+        if (maxSum < 0) return maxSum;
+
+                                    // Circular result
+        return max(maxSum, total - minSum);
+    }
+};
     
