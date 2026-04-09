@@ -1,4 +1,5 @@
-# Subarray sum equals K
+# Find pivot Index
+
 int pivotIndex(vector<int>& a) {
        int n=a.size();
        // vector<int> left(n,0);
@@ -19,9 +20,7 @@ int pivotIndex(vector<int>& a) {
 
            left=left+a[i];
        }
-       return -1;
-
-
+       return -1
    }
 
 
