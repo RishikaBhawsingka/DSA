@@ -36,7 +36,8 @@ public:
         {
             sum = sum + nums[i];
             int ques = sum - k;  
-            int freq = f[ques];
+            int freq = f[ques]; 
+//here basically using hashmap we track how many times we have seen this (sum - k) before ,coz 100% freq of (sum - k) == (no. of subarray = K)
             res = res + freq;
             f[sum]++;
         }
