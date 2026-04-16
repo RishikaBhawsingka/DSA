@@ -1,4 +1,4 @@
-#Q1.
+#Q1.Merge Interval
 vector<vector<int>> merge(vector<vector<int>>& a) {
         vector<vector<int>> res;
         int n=a.size();
@@ -24,4 +24,53 @@ vector<vector<int>> merge(vector<vector<int>>& a) {
         res.push_back({start,end});
         return res;
     }
+#Q2. Insert interval (insert + merge)
+class Solution {
+public:
+    vector<vector<int>> insert(vector<vector<int>>& a, vector<int>& interval) {
+        int i = 0;
+        bool insert = false;
+        vector<vector<int>> res;
+
+        int n = a.size();
+
+        // Step 1: insert interval into array
+        for (i = 0; i < n; i++) {
+            if (!insert && interval[0] < a[i][0]) {
+                res.push_back(interval);
+                insert = true;
+            }
+            res.push_back(a[i]);
+        }
+
+        if (!insert) {
+            res.push_back(interval);
+        }
+
+        // Step 2: sort
+        sort(res.begin(), res.end());
+
+        // Step 3: merge
+        vector<vector<int>> ans;
+
+        int start = res[0][0];
+        int end = res[0][1];
+
+        for (i = 1; i < res.size(); i++) {
+            int s = res[i][0];
+            int e = res[i][1];
+
+            if (end >= s) { // overlap
+                end = max(end, e);
+            } else {
+                ans.push_back({start, end});
+                start = s;
+                end = e;
+            }
+        }
+
+        ans.push_back({start, end});
+        return ans;
+    }
+};
 
