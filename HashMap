@@ -16,3 +16,4 @@ public:
         return -1;
     }
 };
+//Q2. Ransom Note
