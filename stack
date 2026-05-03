@@ -80,5 +80,46 @@ public:
     }
 };
 //Q5. remove duplicates in k   (lc-1209)
+class Solution {
+public:
+    string removeDuplicates(string s, int k) {
+        int n = s.size();
+        string res = "";   // FIX 1: remove extra space
+        stack<pair<char,int>> st;
+        for(int i = 0;i<n;i++)
+        {
+            char c = s[i];
 
+            if(st.empty()){
+                st.push({c,1});
+                continue;
+            }
+            if(st.top().first != s[i])
+            {
+                st.push({c,1});
+                continue;
+            }
+            if(st.top().second < (k-1))
+            {
+                pair<char,int> p = st.top();
+                st.pop();
+                st.push({p.first,p.second+1});
+                continue;
+            }
+            st.pop(); // remove k duplicates
+        }
+            //build result AFTER processing entire string
+        while(!st.empty())
+        {
+            pair<char,int> p = st.top();
+            st.pop();
+            while(p.second--)
+            {
+                res.push_back(p.first);
+            }
+        }
+        reverse(res.begin(), res.end()); // important
+        return res;
+    }
+};
 
