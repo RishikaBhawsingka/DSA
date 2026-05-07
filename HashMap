@@ -26,7 +26,6 @@ public:
         for(char c : magazine) {
             freq[c - 'a']++;
         }
-
         // try to use letters for ransomNote
         for(char c : ransomNote) {
             if(freq[c - 'a'] == 0) {
@@ -34,7 +33,6 @@ public:
             }
             freq[c - 'a']--;
         }
-
         return true;
     }
 };
