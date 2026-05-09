@@ -249,4 +249,5 @@ public:
         return prev;
     }
 };
-    
+//Q. Reverse linkedList 2
+
