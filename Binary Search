@@ -21,3 +21,26 @@ public:
     return 0;
     }
 };
+//Q2. Find min in sorted rotated array
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int n = nums.size(); 
+        int low = 0, high = n - 1;
+        while(low < high)
+        {
+            int mid = (low + high) / 2;
+            // minimum is in right half
+            if(nums[mid] > nums[high])
+            {
+                low = mid + 1;
+            }
+            else
+            {
+                // minimum can be mid itself
+                high = mid;
+            }
+        }
+        return nums[low];
+    }
+};
