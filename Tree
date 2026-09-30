@@ -1,2 +1,18 @@
- 
+//Inorder
+class Solution {
+private:
+    void fun(TreeNode* node, vector<int>& ans) {
+        if (node == nullptr) 
+           return; 
+        fun(node->left, ans);   // Traverse left subtree
+        ans.push_back(node->val); // Process current node
+        fun(node->right, ans);  // Traverse right subtree
+    }
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        fun(root, ans);
+        return ans;
+    }
+};
 
