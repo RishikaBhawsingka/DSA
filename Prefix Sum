@@ -105,5 +105,37 @@ public:
         return res;
     }
 };
+#Min-penalty to a shop
+class Solution {
+public:
+    int bestClosingTime(string customers) {
+        int n = customers.size();
+        int penalty = 0;
+
+        // Closing at hour 0: all 'Y's incur penalty
+        for (char c : customers) {
+            if (c == 'Y') penalty++;
+        }
+
+        int minPenalty = penalty;
+        int bestHour = 0;
+
+        // Move closing time j from 1 to n
+        for (int j = 1; j <= n; j++) {
+            if (customers[j - 1] == 'Y') {
+                penalty--;
+            } else {
+                penalty++;
+            }
+
+            if (penalty < minPenalty) {
+                minPenalty = penalty;
+                bestHour = j;
+            }
+        }
+
+        return bestHour;
+    }
+};
 
 
