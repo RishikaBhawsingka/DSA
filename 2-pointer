@@ -485,3 +485,33 @@ public:
         }
     }
 };
+//Count Dominant Elements
+class Solution {
+public:
+    int countDominantElements(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 1)
+         return 1;
+        int domi =0;
+        int i = n-1;
+        if(nums[i] >= nums[i-1])
+        {
+            domi++;
+            i--;
+        }
+         i = n-2; 
+        while(i-1>=0)
+        {
+            if(nums[i] >= (((double)(long long)nums[i-1]+nums[i+1])/2))
+                domi++;
+            i--;
+        }
+        while(i == 0)
+        {
+            if(nums[i] >= nums[i+1])
+            domi++;
+            i--;
+        }
+        return domi;
+    }
+};
